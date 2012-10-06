@@ -34,7 +34,7 @@
 /*visualize extension styles*/
 #cpanel .visualize { padding: 70px 40px 90px; background: #ccc url(../images/chartbg-vanilla.png) top repeat-x; border: 1px solid #ddd; -moz-border-radius: 12px; -webkit-border-radius: 12px; border-radius: 12px; }
 #cpanel .visualize canvas { border: 1px solid #aaa; margin: -1px; background: #fff; }
-#cpanel .visualize-labels-x, .visualize-labels-y { top: 70px; left: 40px; z-index: 100; }
+#cpanel .visualize-labels-x, .visualize-labels-y { top: 70px; left: 40px; z-index: 5; }
 #cpanel .visualize-pie .visualize-labels { position: absolute; top: 70px; left: 40px; }
 #cpanel .visualize-labels-x li span.label, .visualize-labels-y li span.label { color: #444; font-size: 1.3em; padding-right: 5px; }
 #cpanel .visualize-labels-y li span.line { border-style: solid;  opacity: .7; }
