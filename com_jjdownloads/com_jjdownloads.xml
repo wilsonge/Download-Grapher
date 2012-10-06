@@ -17,7 +17,7 @@
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>controller.php</filename>
-			<filename>helper.php</filename>
+			<filename>cron.php</filename>
 			<filename>jjdownloads.php</filename>
 			<folder>views</folder>
 			<folder>tables</folder>
