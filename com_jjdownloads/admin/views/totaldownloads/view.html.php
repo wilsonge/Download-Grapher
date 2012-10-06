@@ -8,7 +8,6 @@
 defined('_JEXEC') or die();
 
 jimport('joomla.application.component.view');
-require_once JPATH_COMPONENT . DS . 'helper.php';
 
 class jjdownloadsViewtotaldownloads extends JView
 {
