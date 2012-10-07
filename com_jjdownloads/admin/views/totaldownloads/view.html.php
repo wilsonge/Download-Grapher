@@ -8,6 +8,7 @@
 defined('_JEXEC') or die();
 
 jimport('joomla.application.component.view');
+jimport('joomla.environment.browser');
 
 class jjdownloadsViewtotaldownloads extends JView
 {
@@ -18,10 +19,18 @@ class jjdownloadsViewtotaldownloads extends JView
 		$document->addScript("components/com_jjdownloads/assets/js/visualize.jQuery.js");
 		JHTML::stylesheet('jjdownloads.css', 'administrator/components/com_jjdownloads/assets/css/');
 		JHTML::stylesheet('visualize.css', 'administrator/components/com_jjdownloads/assets/css/');
-		JHTML::script('administrator/components/com_jjdownloads/assets/excanvas.js', false, false, false, 'mie');
-		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_DOWNLOADS' ), 'cpanel' );
+				
+        $doc =& JFactory::getDocument();
+        $browser = &JBrowser::getInstance();
+        $browserType = $browser->getBrowser();
+        if($browserType == 'msie')
+        {
+           $doc->addScript( 'components/com_jjdownloads/assets/js/excanvas.js' );
+        }
+
 		$extensions		= & $this->get('Extensions');
-		$this->assignRef('extensions',	$extensions);
+		$this->assignRef('extensions',	$extensions);		
+		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_CPANEL' ), 'cpanel' );
 		parent::display($tpl);
 	}
 }
