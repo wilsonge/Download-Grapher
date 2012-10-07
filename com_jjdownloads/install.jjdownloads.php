@@ -12,7 +12,7 @@ $lang->load('com_jjdownloads', JPATH_ADMINISTRATOR);
     <table width="100%">
     	<tr>
     		<td width="4%">
-    			<img src="components/com_jjdownloads/assets/images/cpanel_48.png" height="48px" width="48px">
+    			<img src="components/com_jjdownloads/assets/images/jj_logo.png" height="48px" width="48px">
     		</td>
     		<td width="76%">
     			<h2>

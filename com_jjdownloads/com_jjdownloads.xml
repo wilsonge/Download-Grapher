@@ -13,7 +13,7 @@
 	<installfile>install.jjdownloads.php</installfile>
 
 	<administration>
-		<menu>COM_JJ_DOWNLOADS</menu>
+		<menu img="components/com_jjdownloads/assets/images/jj_logo.png">COM_JJ_DOWNLOADS</menu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>controller.php</filename>
