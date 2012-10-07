@@ -28,7 +28,8 @@ class jjdownloadsViewjjdownloads extends JView
            $doc->addScript( 'components/com_jjdownloads/assets/js/excanvas.js' );
         }
 
-
+		$history		= & $this->get('History');
+		$this->assignRef('history',	$history);		
 		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_CPANEL' ), 'cpanel' );
 		parent::display($tpl);
 	}
