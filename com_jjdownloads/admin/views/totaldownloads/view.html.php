@@ -30,7 +30,7 @@ class jjdownloadsViewtotaldownloads extends JView
 
 		$extensions		= & $this->get('Extensions');
 		$this->assignRef('extensions',	$extensions);		
-		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_CPANEL' ), 'cpanel' );
+		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_DOWNLOADS' ), 'cpanel' );
 		parent::display($tpl);
 	}
 }
