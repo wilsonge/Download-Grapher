@@ -1,7 +1,7 @@
 /*plugin styles*/
 #cpanel .visualize { border: 1px solid #888; position: relative; background: #fafafa; }
 #cpanel .visualize canvas { position: absolute; }
-#cpanel .visualize ul,.visualize li { margin: 0; padding: 0; margin-left: 10px;}
+#cpanel .visualize ul,.visualize li { margin: 0; padding: 0; margin-left: 5px;}
 
 /*table title, key elements*/
 #cpanel .visualize .visualize-info { padding: 3px 5px; background: #fafafa; border: 1px solid #888; position: absolute; top: -20px; right: 10px; opacity: .8; }
