@@ -20,7 +20,6 @@
 			<filename>cron.php</filename>
 			<filename>jjdownloads.php</filename>
 			<folder>views</folder>
-			<folder>tables</folder>
 			<folder>models</folder>
 			<folder>assets</folder>
 		</files>
