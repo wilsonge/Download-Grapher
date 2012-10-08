@@ -51,11 +51,11 @@ $i++;
 			<thead>
 				<tr>
 					<td></td>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-5]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-4]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-3]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-2]->date))); ?></th>
 					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-1]->date))); ?></th>
+					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-2]->date))); ?></th>
+					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-3]->date))); ?></th>
+					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-4]->date))); ?></th>
+					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-5]->date))); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,58 +67,16 @@ $i++;
 					<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo 'Unknown'; }?></th>
 					<td>
 					<?php
-						if(($rows-1)>=0) {
-							if(isset($extension[$this->history[$rows-1]->date])) {
-								if(($rows-2)>=0) {
-									if(isset($extension[$this->history[$rows-2]->date])) {
-										echo ($extension[$this->history[$rows-2]->date])-($extension[$this->history[$rows-1]->date]);
+						if(($rows-5)>=0) {
+							if(isset($extension[$this->history[$rows-5]->date])) {
+								if(($rows-6)>=0) {
+									if(isset($extension[$this->history[$rows-6]->date])) {
+										echo ($extension[$this->history[$rows-6]->date])-($extension[$this->history[$rows-5]->date]);
 									} else {
-										echo $extension[$this->history[$rows-1]->date];
+										echo $extension[$this->history[$rows-5]->date];
 									}
 								} else {
-									echo $extension[$this->history[$rows-1]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-2)>=0) {
-							if(isset($extension[$this->history[$rows-2]->date])) {
-								if(($rows-3)>=0) {
-									if(isset($extension[$this->history[$rows-3]->date])) {
-										echo ($extension[$this->history[$rows-3]->date])-($extension[$this->history[$rows-2]->date]);
-									} else {
-										echo $extension[$this->history[$rows-2]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-2]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-3)>=0) {
-							if(isset($extension[$this->history[$rows-3]->date])) {
-								if(($rows-4)>=0) {
-									if(isset($extension[$this->history[$rows-4]->date])) {
-										echo ($extension[$this->history[$rows-4]->date])-($extension[$this->history[$rows-3]->date]);
-									} else {
-										echo $extension[$this->history[$rows-3]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-3]->date];
+									echo $extension[$this->history[$rows-5]->date];
 								}
 							} else {
 								echo 0;
@@ -151,16 +109,58 @@ $i++;
 					</td>
 					<td>
 					<?php
-						if(($rows-5)>=0) {
-							if(isset($extension[$this->history[$rows-5]->date])) {
-								if(($rows-6)>=0) {
-									if(isset($extension[$this->history[$rows-6]->date])) {
-										echo ($extension[$this->history[$rows-6]->date])-($extension[$this->history[$rows-5]->date]);
+						if(($rows-3)>=0) {
+							if(isset($extension[$this->history[$rows-3]->date])) {
+								if(($rows-4)>=0) {
+									if(isset($extension[$this->history[$rows-4]->date])) {
+										echo ($extension[$this->history[$rows-4]->date])-($extension[$this->history[$rows-3]->date]);
 									} else {
-										echo $extension[$this->history[$rows-5]->date];
+										echo $extension[$this->history[$rows-3]->date];
 									}
 								} else {
-									echo $extension[$this->history[$rows-5]->date];
+									echo $extension[$this->history[$rows-3]->date];
+								}
+							} else {
+								echo 0;
+							}
+						} else {
+							echo 0;
+						}
+					?>
+					</td>
+					<td>
+					<?php
+						if(($rows-2)>=0) {
+							if(isset($extension[$this->history[$rows-2]->date])) {
+								if(($rows-3)>=0) {
+									if(isset($extension[$this->history[$rows-3]->date])) {
+										echo ($extension[$this->history[$rows-3]->date])-($extension[$this->history[$rows-2]->date]);
+									} else {
+										echo $extension[$this->history[$rows-2]->date];
+									}
+								} else {
+									echo $extension[$this->history[$rows-2]->date];
+								}
+							} else {
+								echo 0;
+							}
+						} else {
+							echo 0;
+						}
+					?>
+					</td>
+					<td>
+					<?php
+						if(($rows-1)>=0) {
+							if(isset($extension[$this->history[$rows-1]->date])) {
+								if(($rows-2)>=0) {
+									if(isset($extension[$this->history[$rows-2]->date])) {
+										echo ($extension[$this->history[$rows-2]->date])-($extension[$this->history[$rows-1]->date]);
+									} else {
+										echo $extension[$this->history[$rows-1]->date];
+									}
+								} else {
+									echo $extension[$this->history[$rows-1]->date];
 								}
 							} else {
 								echo 0;
