@@ -25,10 +25,12 @@ $lang->load('com_jjdownloads', JPATH_ADMINISTRATOR);
 
     <table width="100%">
 		<tr>
-			<td width='50%' style='background:#F2F2F2;padding:10px;'>
+			<td width='50%'>
     			<?php echo JText::_('COM_JJ_DOWNLOADS_DESC'); ?>
     		</td>
-		<?php echo JText::_('COM_JJ_DOWNLOADS_RIGHT'); ?>
+			<td width='50%' style='background:#F2F2F2;padding:10px;'>
+				<?php echo JText::_('COM_JJ_DOWNLOADS_RIGHT'); ?>
+			</td>
     	</tr>
     </table>
 	<?php
