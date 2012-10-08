@@ -381,7 +381,7 @@ $.fn.visualize = function(options, container){
 	
 		//create new canvas, set w&h attrs (not inline styles)
 		var canvasNode = document.createElement("canvas"); 
-		canvasNode.setAttribute('height',o.height-30);
+		canvasNode.setAttribute('height',o.height);
 		canvasNode.setAttribute('width',o.width);
 		var canvas = $(canvasNode);
 			
@@ -390,7 +390,7 @@ $.fn.visualize = function(options, container){
 		
 		//create canvas wrapper div, set inline w&h, append
 		var canvasContain = (container || $('<div class="visualize" role="img" aria-label="Chart representing data from the table: '+ title +'" />'))
-			.height(o.height)
+			.height(o.height+30)
 			.width(o.width)
 			.append(canvas);
 
