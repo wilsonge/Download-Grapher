@@ -1,7 +1,7 @@
 /*plugin styles*/
 #cpanel .visualize { border: 1px solid #888; position: relative; background: #fafafa; }
 #cpanel .visualize canvas { position: absolute; }
-#cpanel .visualize ul,.visualize li { margin: 0; padding: 0;}
+#cpanel .visualize ul,.visualize li { margin: 0; padding: 0; margin-left: 10px;}
 
 /*table title, key elements*/
 #cpanel .visualize .visualize-info { padding: 3px 5px; background: #fafafa; border: 1px solid #888; position: absolute; top: -20px; right: 10px; opacity: .8; }
@@ -33,7 +33,7 @@
 
 /*visualize extension styles*/
 #cpanel .visualize { padding: 70px 40px 90px; background: #ccc url(../images/chartbg-vanilla.png) top repeat-x; border: 1px solid #ddd; -moz-border-radius: 12px; -webkit-border-radius: 12px; border-radius: 12px; }
-#cpanel .visualize canvas { border: 1px solid #aaa; margin: -1px; background: #fff; }
+#cpanel .visualize canvas { border: 1px solid #aaa; margin: -1px; background: #fff; margin-left: 10px;}
 #cpanel .visualize-labels-x, .visualize-labels-y { top: 70px; left: 40px; z-index: 5; }
 #cpanel .visualize-pie .visualize-labels { position: absolute; top: 70px; left: 40px; }
 #cpanel .visualize-labels-x li span.label, .visualize-labels-y li span.label { color: #444; font-size: 1.3em; padding-right: 5px; }
