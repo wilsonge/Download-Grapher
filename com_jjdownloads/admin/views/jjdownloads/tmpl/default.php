@@ -64,7 +64,7 @@ $i++;
 				foreach($array as $extension)  { 
 				?>
 				<tr>
-					<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo 'Unknown'; }?></th>
+					<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN'); }?></th>
 					<td>
 					<?php
 						if(($rows-5)>=0) {
