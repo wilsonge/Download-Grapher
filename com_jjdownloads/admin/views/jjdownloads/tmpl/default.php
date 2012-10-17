@@ -61,119 +61,43 @@ $i++;
 			<tbody>
 				<?php
 				$model = $this->getModel('jjdownloads');
-				foreach($array as $extension)  { 
-				?>
-				<tr>
-					<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN'); }?></th>
-					<td>
-					<?php
-						if(($rows-5)>=0) {
-							if(isset($extension[$this->history[$rows-5]->date])) {
-								if(($rows-6)>=0) {
-									if(isset($extension[$this->history[$rows-6]->date])) {
-										echo ($extension[$this->history[$rows-6]->date])-($extension[$this->history[$rows-5]->date]);
-									} else {
-										echo $extension[$this->history[$rows-5]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-5]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
+				foreach($array as $extension)  {
+					$j=0;
 					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-4)>=0) {
-							if(isset($extension[$this->history[$rows-4]->date])) {
-								if(($rows-5)>=0) {
-									if(isset($extension[$this->history[$rows-5]->date])) {
-										echo ($extension[$this->history[$rows-5]->date])-($extension[$this->history[$rows-4]->date]);
+					<tr>
+						<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN'); }?></th>
+						<?php for($i=count($this->history);$i>0;$i--) {
+							if($j<5) { 
+							?>
+								<td>
+									<?php
+									if(($rows-$i)>=0) {
+										if(isset($extension[$this->history[$rows-$i]->date])) {
+											if(($rows-($i-1))>=0) {
+												if(isset($extension[$this->history[$rows-($i-1)]->date])) {
+													echo ($extension[$this->history[$rows-$i]->date])-($extension[$this->history[$rows-($i-1)]->date]);
+												} else {
+													echo $extension[$this->history[$rows-$i]->date];
+												}
+											} else {
+												echo $extension[$this->history[$rows-$i]->date];
+											}
+										} else {
+											echo 0;
+										}
 									} else {
-										echo $extension[$this->history[$rows-4]->date];
+										echo 0;
 									}
-								} else {
-									echo $extension[$this->history[$rows-4]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-3)>=0) {
-							if(isset($extension[$this->history[$rows-3]->date])) {
-								if(($rows-4)>=0) {
-									if(isset($extension[$this->history[$rows-4]->date])) {
-										echo ($extension[$this->history[$rows-4]->date])-($extension[$this->history[$rows-3]->date]);
-									} else {
-										echo $extension[$this->history[$rows-3]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-3]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-2)>=0) {
-							if(isset($extension[$this->history[$rows-2]->date])) {
-								if(($rows-3)>=0) {
-									if(isset($extension[$this->history[$rows-3]->date])) {
-										echo ($extension[$this->history[$rows-3]->date])-($extension[$this->history[$rows-2]->date]);
-									} else {
-										echo $extension[$this->history[$rows-2]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-2]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-					<td>
-					<?php
-						if(($rows-1)>=0) {
-							if(isset($extension[$this->history[$rows-1]->date])) {
-								if(($rows-2)>=0) {
-									if(isset($extension[$this->history[$rows-2]->date])) {
-										echo ($extension[$this->history[$rows-2]->date])-($extension[$this->history[$rows-1]->date]);
-									} else {
-										echo $extension[$this->history[$rows-1]->date];
-									}
-								} else {
-									echo $extension[$this->history[$rows-1]->date];
-								}
-							} else {
-								echo 0;
-							}
-						} else {
-							echo 0;
-						}
-					?>
-					</td>
-				</tr>
-				<?php } ?>
+									?>
+								</td>
+							<?php } 
+						$j++;
+						} ?>
+					</tr>
+				<?php  } ?>
 			</tbody>
-		</table>	
+
+			</table>	
 	</div>
 </div>
 
