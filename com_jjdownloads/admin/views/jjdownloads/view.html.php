@@ -31,6 +31,7 @@ class jjdownloadsViewjjdownloads extends JView
 		$history		= & $this->get('History');
 		$this->assignRef('history',	$history);		
 		JToolBarHelper::title( JText::_( 'COM_JJ_DOWNLOADS_CPANEL' ), 'cpanel' );
+		JToolBarHelper::preferences( 'com_jjdownloads' );
 		parent::display($tpl);
 	}
 }
