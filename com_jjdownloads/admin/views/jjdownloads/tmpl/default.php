@@ -10,7 +10,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.helper');
 
 $rows=count($this->history);
-$weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks');
+$weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks', 5);
 
 $downloads=array();
 $i=0;
