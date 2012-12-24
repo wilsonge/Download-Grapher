@@ -54,11 +54,15 @@ $i++;
 			<thead>
 				<tr>
 					<td></td>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-1]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-2]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-3]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-4]->date))); ?></th>
-					<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-5]->date))); ?></th>
+					<?php
+					$i=1;
+					while($i<($weeks+1)) {
+						?>
+						<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-1]->date))); ?></th>
+						<?php
+						$i++;
+					}
+					?>
 				</tr>
 			</thead>
 			<tbody>
