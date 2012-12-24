@@ -7,7 +7,10 @@
 
 defined('_JEXEC') or die('Restricted access'); 
 
+jimport('joomla.application.component.helper');
+
 $rows=count($this->history);
+$weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks');
 
 $downloads=array();
 $i=0;
@@ -67,7 +70,7 @@ $i++;
 					<tr>
 						<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN'); }?></th>
 						<?php for($i=count($this->history);$i>0;$i--) {
-							if($j<5) { 
+							if($j<$weeks) { 
 							?>
 								<td>
 									<?php

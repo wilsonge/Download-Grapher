@@ -1,0 +1,14 @@
+<config>
+	<fieldset
+		name="downloads"
+		label="COM_JJ_DOWNLOADS_CONFIG"
+		description="COM_JJ_DOWNLOADS_CONFIG_DESC"
+		>
+            <field name="weeks" type="text"
+                label="COM_JJ_DOWNLOADS_CONFIG_WEEKS"
+                required="true"
+                description="COM_JJ_DOWNLOADS_CONFIG_WEEKS_DESC"
+				default="5"
+            />
+	</fieldset>
+</config>
