@@ -10,7 +10,7 @@
 	<version>1.0.2</version>
 	<description></description>
 	
-	<installfile>install.jjdownloads.php</installfile>
+	<scriptfile>script.php</scriptfile>
 
 	<administration>
 		<menu img="components/com_jjdownloads/assets/images/jj_logo.png">COM_JJ_DOWNLOADS</menu>

@@ -17,6 +17,7 @@ $ -> Language fix or change
 
 1.0.3
 # New param for number of weeks
++ Create script file to replace install file
 
 1.0.2
 # Fixed bug with the way download count printed in the table
