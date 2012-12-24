@@ -13,7 +13,7 @@ class jjdownloadsController extends JController
 
 function display( )
 	{
-		JSubMenuHelper::addEntry(JText::_('COM_JJ_DOWNLOADS_CPANEL'), 'index.php?option=com_jjdownloads&view=jjdownloads');
+		JSubMenuHelper::addEntry(JText::_( 'COM_JJ_DOWNLOADS_LAST' ). ' ' .$weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks', 5). ' ' .JText::_( 'COM_JJ_DOWNLOADS_WEEKS' ), 'index.php?option=com_jjdownloads&view=jjdownloads');
 		JSubMenuHelper::addEntry(JText::_('COM_JJ_DOWNLOADS_TOTALS'), 'index.php?option=com_jjdownloads&amp;view=totaldownloads');
 		parent::display();
 	}
