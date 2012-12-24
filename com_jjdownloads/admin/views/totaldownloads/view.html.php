@@ -15,7 +15,7 @@ class jjdownloadsViewtotaldownloads extends JView
 	function display($tpl = null)
 	{
 		$document =& JFactory::getDocument();
-		$document->addScript("http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js");
+		$document->addScript("http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js");
 		$document->addScript("components/com_jjdownloads/assets/js/visualize.jQuery.js");
 		JHTML::stylesheet('jjdownloads.css', 'administrator/components/com_jjdownloads/assets/css/');
 		JHTML::stylesheet('visualize.css', 'administrator/components/com_jjdownloads/assets/css/');
