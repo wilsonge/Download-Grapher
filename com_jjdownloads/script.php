@@ -39,7 +39,7 @@ class com_jjdownloadsInstallerScript
 					<img src="components/com_jjdownloads/assets/images/jj_logo.png" height="48px" width="48px">
 				</td>
 				<td width="76%">
-					<h2>'. JText::_("JJ Downloads") . $this->release .'</h2>
+					<h2>'. JText::_("JJ Downloads").' '.$this->release .'</h2>
 				</td>
 			</tr>
 			<tr>
@@ -62,7 +62,7 @@ class com_jjdownloadsInstallerScript
 					<img src="components/com_jjdownloads/assets/images/jj_logo.png" height="48px" width="48px">
 				</td>
 				<td width="76%">
-					<h2>'. JText::_("JJ Downloads") . $this->release .'</h2>
+					<h2>'. JText::_("JJ Downloads") .' '. $this->release .'</h2>
 				</td>
 			</tr>
 			<tr>
