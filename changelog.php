@@ -15,6 +15,9 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+1.0.3
+# New param for number of weeks
+
 1.0.2
 # Fixed bug with the way download count printed in the table
 # Parameter created to show how many weeks data to show
