@@ -15,13 +15,10 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
-1.0.3
-# New param for number of weeks
-+ Create script file to replace install file
-
 1.0.2
 # Fixed bug with the way download count printed in the table
-# Parameter created to show how many weeks data to show
++ Parameter created to show how many weeks data to show
++ Create script file to replace install file
 
 1.0.1 (12/10/2012)
 # Error with the axis Issue fixed
