@@ -7,6 +7,8 @@ Primarily designed for use on my own site I decided it might be useful for anyon
 
 Please feel free to post about any bugs etc. And I'll try and fix them ASAP
 
+A detailed changelog can be found here https://github.com/wilsonge/Download-Grapher/wiki/Changelog
+
 SQL Tables
 ================
 It requires two sql tables (not installed with the component) with the following layout:
