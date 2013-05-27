@@ -16,7 +16,7 @@ class jjdownloadsModeljjdownloads extends JModel
     function _buildQuery()
     {
         $query = ' SELECT * '
-            . ' FROM #__jjdownloads_history '
+            . ' FROM #__jjdownloads_history ORDER BY id '
         ;
         return $query;
     }
