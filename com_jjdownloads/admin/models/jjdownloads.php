@@ -34,7 +34,7 @@ class jjdownloadsModeljjdownloads extends JModel
     }
 	
 	function Name($number) {
-		$db =& JFactory::getDBO();
+		$db = JFactory::getDBO();
         $query = ' SELECT * '
             . ' FROM #__jjdownloads WHERE id="'.$number.'"'
         ;
