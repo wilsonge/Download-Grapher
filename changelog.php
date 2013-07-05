@@ -1,5 +1,5 @@
 <?php
-// no direct access
+// No direct access
 die('Restricted access');
 
 ?>

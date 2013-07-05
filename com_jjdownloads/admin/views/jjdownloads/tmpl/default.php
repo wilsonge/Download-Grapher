@@ -1,7 +1,7 @@
 <?php 
 /**
- * @copyright (C) 2012 JoomJunk. All rights reserved.
- * @package    JoomJunk Downloads
+ * @package    JoomJunk_Downloads
+ * @copyright  (C) 2012 JoomJunk. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-3.0.html
  **/
 
@@ -9,40 +9,55 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.helper');
 
-$rows=count($this->history);
+$rows = count($this->history);
 $weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks', 5);
 
-$downloads=array();
-$i=0;
-while($i<$rows) {
-	$downloads[$i]=explode(",", $this->history[$i]->downloads);
+$downloads = array();
+$i = 0;
+
+while ($i < $rows)
+{
+	$downloads[$i] = explode(",", $this->history[$i]->downloads);
 	$i++;
 }
-$i=0;
-$historicalcounts=array();
-while($i<$rows) {
-	$counter=count($downloads[$i]);
-	$j=0;
-	while($j<($counter-1)) {
-		$aextension=$downloads[$i][$j];
-		$historicalcounts[$i][$j]=explode(":", $aextension);
+$i = 0;
+$historicalcounts = array();
+
+while ($i < $rows)
+{
+	$counter = count($downloads[$i]);
+	$j = 0;
+
+	while ($j < ($counter - 1))
+	{
+		$aextension = $downloads[$i][$j];
+		$historicalcounts[$i][$j] = explode(":", $aextension);
 		$j++;
 	}
+
 	$i++;
 }
-$array=array();
-$i=0;
-while($i<$rows) {
-	$j=0;
-	while($j<($counter-1)) {
-		$k=0;
-		while($k<count($historicalcounts[$i][$j][0])) {
-			$array[$historicalcounts[$i][$j][0]][$this->history[$rows-$i-1]->date]=$historicalcounts[$i][$j][1];
+$array = array();
+$i = 0;
+
+while ($i < $rows)
+{
+	$j = 0;
+
+	while ($j < ($counter - 1))
+	{
+		$k = 0;
+
+		while ($k < count($historicalcounts[$i][$j][0]))
+		{
+			$array[$historicalcounts[$i][$j][0]][$this->history[$rows - $i - 1]->date] = $historicalcounts[$i][$j][1];
 			$k++;
 		}
-		$array[$historicalcounts[$i][$j][0]]['name']=$historicalcounts[$i][$j][0];
+
+		$array[$historicalcounts[$i][$j][0]]['name'] = $historicalcounts[$i][$j][0];
 	$j++;
 	}
+
 $i++;
 }
 ?>
@@ -55,10 +70,12 @@ $i++;
 				<tr>
 					<td></td>
 					<?php
-					$i=1;
-					while($i<($weeks+1)) {
+					$i = 1;
+
+					while ($i < ($weeks + 1))
+					{
 						?>
-						<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows-$i]->date))); ?></th>
+						<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows - $i]->date))); ?></th>
 						<?php
 						$i++;
 					}
@@ -68,40 +85,67 @@ $i++;
 			<tbody>
 				<?php
 				$model = $this->getModel('jjdownloads');
-				foreach($array as $extension)  {
-					$j=0;
+				foreach ($array as $extension)
+				{
+					$j = 0;
 					?>
 					<tr>
-						<th scope="col"><?php if(isset($extension['name'])) { echo $model->Name( $extension['name'] ); } else { echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN'); }?></th>
-						<?php for($i=count($this->history);$i>0;$i--) {
-							if($j<$weeks) { 
+						<th scope="col"><?php if(isset($extension['name']))
+							{
+								echo $model->Name( $extension['name'] );
+							}
+							else
+							{
+								echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN');
+							}?></th>
+						<?php for ($i = count($this->history); $i > 0; $i--)
+						{
+							if ($j < $weeks)
+							{
 							?>
 								<td>
 									<?php
-									if(($rows-$i)>=0) {
-										if(isset($extension[$this->history[$rows-$i]->date])) {
-											if(($rows-($i-1))>=0) {
-												if(isset($extension[$this->history[$rows-($i-1)]->date])) {
-													echo ($extension[$this->history[$rows-$i]->date])-($extension[$this->history[$rows-($i-1)]->date]);
-												} else {
-													echo $extension[$this->history[$rows-$i]->date];
+									if (($rows - $i) >= 0)
+									{
+										if (isset($extension[$this->history[$rows - $i]->date]))
+										{
+											if (($rows - ($i - 1)) >= 0)
+											{
+												if (isset($extension[$this->history[$rows - ($i - 1)]->date]))
+												{
+													echo ($extension[$this->history[$rows - $i]->date]) - ($extension[$this->history[$rows - ($i - 1)]->date]);
 												}
-											} else {
-												echo $extension[$this->history[$rows-$i]->date];
+												else
+												{
+													echo $extension[$this->history[$rows - $i]->date];
+												}
 											}
-										} else {
+											else
+											{
+												echo $extension[$this->history[$rows - $i]->date];
+											}
+										}
+										else
+										{
 											echo 0;
 										}
-									} else {
+									}
+									else
+									{
 										echo 0;
 									}
 									?>
 								</td>
-							<?php } 
+							<?php
+							}
+
 						$j++;
-						} ?>
+						}
+						?>
 					</tr>
-				<?php  } ?>
+				<?php
+				}
+				?>
 			</tbody>
 
 			</table>	
