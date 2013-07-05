@@ -31,7 +31,10 @@ class jjdownloadsViewjjdownloads extends JView
 
 		$history = & $this->get('History');
 		$this->assignRef('history',	$history);
-		JToolBarHelper::title( JText::_('COM_JJ_DOWNLOADS_LAST') . ' ' . $weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks', 5) . ' ' . JText::_('COM_JJ_DOWNLOADS_WEEKS'), 'cpanel');
+		JToolBarHelper::title(
+			JText::_('COM_JJ_DOWNLOADS_LAST') . ' ' . $weeks = JComponentHelper::getParams('com_jjdownloads')->get('weeks', 5) .
+			' ' . JText::_('COM_JJ_DOWNLOADS_WEEKS'), 'cpanel'
+		);
 		JToolBarHelper::preferences('com_jjdownloads');
 		parent::display($tpl);
 	}

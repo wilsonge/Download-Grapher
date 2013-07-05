@@ -5,7 +5,7 @@
  * @license    http://www.gnu.org/licenses/gpl-3.0.html
  **/
 
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.helper');
 
@@ -38,6 +38,7 @@ while ($i < $rows)
 
 	$i++;
 }
+
 $array = array();
 $i = 0;
 
@@ -86,14 +87,15 @@ $i++;
 			<tbody>
 				<?php
 				$model = $this->getModel('jjdownloads');
+
 				foreach ($array as $extension)
 				{
 					$j = 0;
 					?>
 					<tr>
-						<th scope="col"><?php if(isset($extension['name']))
+						<th scope="col"><?php if (isset($extension['name']))
 							{
-								echo $model->Name( $extension['name'] );
+								echo $model->Name($extension['name']);
 							}
 							else
 							{
