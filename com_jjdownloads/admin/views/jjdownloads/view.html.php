@@ -17,11 +17,11 @@ class jjdownloadsViewjjdownloads extends JView
 		$document =& JFactory::getDocument();
 		$document->addScript("http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js");
 		$document->addScript("components/com_jjdownloads/assets/js/visualize.jQuery.js");
-		JHTML::stylesheet('jjdownloads.css', 'administrator/components/com_jjdownloads/assets/css/');
-		JHTML::stylesheet('visualize.css', 'administrator/components/com_jjdownloads/assets/css/');
+		JHtml::stylesheet('jjdownloads.css', 'administrator/components/com_jjdownloads/assets/css/');
+		JHtml::stylesheet('visualize.css', 'administrator/components/com_jjdownloads/assets/css/');
 
-		$doc =& JFactory::getDocument();
-		$browser = &JBrowser::getInstance();
+		$doc = JFactory::getDocument();
+		$browser = JBrowser::getInstance();
 		$browserType = $browser->getBrowser();
 
 		if ($browserType == 'msie')

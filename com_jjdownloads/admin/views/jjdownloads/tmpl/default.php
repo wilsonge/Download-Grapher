@@ -20,6 +20,7 @@ while ($i < $rows)
 	$downloads[$i] = explode(",", $this->history[$i]->downloads);
 	$i++;
 }
+
 $i = 0;
 $historicalcounts = array();
 

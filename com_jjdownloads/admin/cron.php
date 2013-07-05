@@ -14,7 +14,7 @@
 	$mainframe = JFactory::getApplication('site');
 
 	// DBQuery
-	$database =& JFactory::getDBO();
+	$database = JFactory::getDBO();
 	$query = "SELECT * FROM #__jjdownloads;";
 	$database->setQuery($query);
 	$result = $database->loadRowList();

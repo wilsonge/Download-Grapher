@@ -20,8 +20,8 @@ class jjdownloadsViewtotaldownloads extends JView
 		JHtml::stylesheet('jjdownloads.css', 'administrator/components/com_jjdownloads/assets/css/');
 		JHtml::stylesheet('visualize.css', 'administrator/components/com_jjdownloads/assets/css/');
 
-		$doc =& JFactory::getDocument();
-		$browser = &JBrowser::getInstance();
+		$doc = JFactory::getDocument();
+		$browser = JBrowser::getInstance();
 		$browserType = $browser->getBrowser();
 
 		if ($browserType == 'msie')
@@ -29,7 +29,7 @@ class jjdownloadsViewtotaldownloads extends JView
 			$doc->addScript('components/com_jjdownloads/assets/js/excanvas.js');
 		}
 
-		$extensions		= & $this->get('Extensions');
+		$extensions	= $this->get('Extensions');
 		$this->assignRef('extensions',	$extensions);
 		JToolBarHelper::title(JText::_('COM_JJ_DOWNLOADS_DOWNLOADS'), 'cpanel');
 		JToolBarHelper::preferences('com_jjdownloads');

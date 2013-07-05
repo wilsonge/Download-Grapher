@@ -23,18 +23,14 @@ class com_jjdownloadsInstallerScript
 
 				if (version_compare($this->release, $oldRelease, 'le'))
 				{
-					JError::raiseWarning(null, JText::_('COM_JJ_DOWNLOADS_INCORRECT_SEQUENCE') . $rel);
+					JFactory::getApplication()->enqueueMessage(JText::_('COM_JJ_DOWNLOADS_INCORRECT_SEQUENCE') . $rel);
 
 					return false;
 				}
 			}
-			else
-			{
-				$rel = $this->release;
-			}
 	}
 
-	public function install( $parent )
+	public function install($parent)
 	{
 		// Installing component manifest file version
 		$this->release = $parent->get("manifest")->version;
