@@ -23,7 +23,7 @@ class jjdownloadsViewjjdownloads extends JViewLegacy
 
 		if ($browserType == 'msie')
 		{
-			JHtml::_('script', JUri::root() . 'administrator/components/com_jjdownloads/assets/js/excanvas.js');
+			JHtml::_('script', 'com_jjdownloads/excanvas.js', false, true);
 		}
 		
 		$history = $this->get('History');
