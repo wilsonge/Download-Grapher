@@ -63,60 +63,65 @@ while ($i < $rows)
 $i++;
 }
 ?>
-
-<div class="col width-40" style="float: right;">
-	<div style="width:95%;border:0px solid #ccc;margin:10px;padding:0px">
-		<table class="adminlist">
-			<caption><?php echo JText::_('COM_JJ_DOWNLOADS_EXTENSION_DOWNLOADS'); ?></caption>
-			<thead>
-				<tr>
-					<td></td>
-					<?php
-					$i = 1;
-
-					while ($i < ($weeks + 1))
-					{
-						?>
-						<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . date("j/n/y", strtotime(($this->history[$rows - $i]->date))); ?></th>
-						<?php
-						$i++;
-					}
-					?>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				$model = $this->getModel('jjdownloads');
-
-				foreach ($array as $extension)
-				{
-					$j = 0;
-					?>
+<div id="jj_downloads">
+	<div class="span5" style="float: right;">
+		<div style="width:95%;border:0px solid #ccc;margin:10px;padding:0px">
+			<table class="adminlist table table-striped">
+				<caption><?php echo JText::_('COM_JJ_DOWNLOADS_EXTENSION_DOWNLOADS'); ?></caption>
+				<thead>
 					<tr>
-						<th scope="col"><?php if (isset($extension['name']))
-							{
-								echo $model->Name($extension['name']);
-							}
-							else
-							{
-								echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN');
-							}?></th>
-						<?php for ($i = count($this->history); $i > 0; $i--)
+						<td></td>
+						<?php
+						$i = 1;
+	
+						while ($i < ($weeks + 1))
 						{
-							if ($j < $weeks)
-							{
 							?>
-								<td>
-									<?php
-									if (($rows - $i) >= 0)
-									{
-										if (isset($extension[$this->history[$rows - $i]->date]))
+							<th scope="row"><?php echo JText::_('COM_JJ_DOWNLOADS_WEEK') . '<br>' . date("j/n/y", strtotime(($this->history[$rows - $i]->date))); ?></th>
+							<?php
+							$i++;
+						}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					$model = $this->getModel('jjdownloads');
+	
+					foreach ($array as $extension)
+					{
+						$j = 0;
+						?>
+						<tr>
+							<th scope="col"><?php if (isset($extension['name']))
+								{
+									echo $model->Name($extension['name']);
+								}
+								else
+								{
+									echo JText::_('COM_JJ_DOWNLOADS_UNKNOWN');
+								}?></th>
+							<?php for ($i = count($this->history); $i > 0; $i--)
+							{
+								if ($j < $weeks)
+								{
+								?>
+									<td>
+										<?php
+										if (($rows - $i) >= 0)
 										{
-											if (($rows - ($i - 1)) >= 0)
+											if (isset($extension[$this->history[$rows - $i]->date]))
 											{
-												if (isset($extension[$this->history[$rows - ($i - 1)]->date]))
+												if (($rows - ($i - 1)) >= 0)
 												{
-													echo ($extension[$this->history[$rows - $i]->date]) - ($extension[$this->history[$rows - ($i - 1)]->date]);
+													if (isset($extension[$this->history[$rows - ($i - 1)]->date]))
+													{
+														echo ($extension[$this->history[$rows - $i]->date]) - ($extension[$this->history[$rows - ($i - 1)]->date]);
+													}
+													else
+													{
+														echo $extension[$this->history[$rows - $i]->date];
+													}
 												}
 												else
 												{
@@ -125,40 +130,36 @@ $i++;
 											}
 											else
 											{
-												echo $extension[$this->history[$rows - $i]->date];
+												echo 0;
 											}
 										}
 										else
 										{
 											echo 0;
 										}
-									}
-									else
-									{
-										echo 0;
-									}
-									?>
-								</td>
-							<?php
+										?>
+									</td>
+								<?php
+								}
+	
+							$j++;
 							}
-
-						$j++;
-						}
-						?>
-					</tr>
-				<?php
-				}
-				?>
-			</tbody>
-
-			</table>	
-	</div>
-</div>
-
-<div class="col width-60" style="float: left;">
-	<div id="cpanel" style="margin:10px;padding-left:5px">
-		<div id="chart">
-			<script type="text/javascript">$('.adminlist') .visualize({type: 'line', width: '620px', height: '400px'}) .appendTo('#chart') </script>
+							?>
+						</tr>
+					<?php
+					}
+					?>
+				</tbody>
+	
+				</table>	
 		</div>
-	</div>           
+	</div>
+	
+	<div class="span5" style="float: left;">
+		<div id="cpanel" style="margin:10px;padding-left:5px">
+			<div id="chart">
+				<script type="text/javascript">(function($){ $('.adminlist') .visualize({type: 'line', width: '620px', height: '400px'}) .appendTo('#chart') })(jQuery);</script>
+			</div>
+		</div>           
+	</div>
 </div>
