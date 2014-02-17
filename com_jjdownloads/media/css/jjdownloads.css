@@ -4,3 +4,14 @@
  * @license    http://www.gnu.org/licenses/gpl-3.0.html
  **/
 
+#cpanel .visualize-labels-x li span.label, .visualize-labels-y li span.label { 
+	background: none; 
+	text-shadow: none;  
+}
+#cpanel .visualize-labels-x li span.label, .visualize-labels-y li span.label {
+	font-size: 14px;
+}
+#cpanel .visualize ul.visualize-key { 
+	bottom: 5px; 
+	width: 99%;
+}
