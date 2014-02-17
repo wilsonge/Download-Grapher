@@ -18,10 +18,9 @@ class jjdownloadsViewtotaldownloads extends JViewLegacy
 		JHtml::_('stylesheet', 'com_jjdownloads/jjdownloads.css', array(), true);
 		JHtml::_('stylesheet', 'com_jjdownloads/visualize.css', array(), true);
 
-		$browser = JBrowser::getInstance();
-		$browserType = $browser->getBrowser();
+		$app = JFactory::getApplication();
 
-		if ($browserType == 'msie')
+		if ($app->client->browser == 17)
 		{
 			JHtml::_('script', 'com_jjdownloads/excanvas.js', false, true);
 		}
