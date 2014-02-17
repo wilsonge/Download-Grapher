@@ -15,6 +15,12 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+2.0.0 (Joomla 3.2 minimum requirement)
+^ Use JDatabaseQuery for queries
+^ Load Joomla hosted copy of jQuery
+^ Use Bootstrap styling for tables
+# Use JModelLegacy
+
 1.0.2
 # Fixed bug with the way download count printed in the table
 + Parameter created to show how many weeks data to show
