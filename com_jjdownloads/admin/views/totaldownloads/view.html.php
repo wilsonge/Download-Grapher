@@ -15,7 +15,7 @@ class jjdownloadsViewtotaldownloads extends JViewLegacy
 	{
 		JHtml::_('jquery.framework');
 		JHtml::_('script', JUri::root() . 'administrator/components/com_jjdownloads/assets/js/visualize.jQuery.js');
-		//JHtml::_('stylesheet', JUri:root() . 'administrator/components/com_jjdownloads/assets/css/jjdownloads.css');
+		JHtml::_('stylesheet', JUri:root() . 'administrator/components/com_jjdownloads/assets/css/jjdownloads.css');
 		JHtml::_('stylesheet', JUri::root() . 'administrator/components/com_jjdownloads/assets/css/visualize.css');
 
 		$browser = JBrowser::getInstance();
