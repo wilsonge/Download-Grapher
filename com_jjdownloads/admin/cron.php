@@ -40,7 +40,7 @@ require_once JPATH_CONFIGURATION . '/configuration.php';
  * This script will fetch the update information for all extensions and store
  * them in the database, speeding up your administrator.
  *
- * @package  Joomla.Cli
+ * @package  JoomJunk_Downloads
  * @since    2.0
  */
 class Jjdownloadupdate extends JApplicationCli
