@@ -13,7 +13,8 @@
  */
 
 // Set flag that this is a parent file.
-const _JEXEC = 1;
+// We are a valid entry point.
+define('_JEXEC', 1);
 
 error_reporting(E_ALL | E_NOTICE);
 ini_set('display_errors', 1);
@@ -53,7 +54,15 @@ class Jjdownloadupdate extends JApplicationCli
 	 */
 	public function doExecute()
 	{
-		$this->out('Starting Update');
+		JLog::addLogger(
+			array(
+				'text_file' => 'cli_jjdownloads.php'
+			),
+			JLog::ALL,
+			'jjdownloads'
+		);
+
+		JLog::add('Starting Update', JLog::INFO, 'jjdownloads');
 		// Get the latest Download counts from the database
 		$database = JFactory::getDbo();
 		$query = $database->getQuery(true);
@@ -61,20 +70,11 @@ class Jjdownloadupdate extends JApplicationCli
 			->from($database->quoteName('#__jjdownloads'));
 		$database->setQuery($query);
 
-		$this->out('Retrieving data from the jjdownloads table');
+		JLog::add('Retrieving data from the jjdownloads table', JLog::INFO, 'jjdownloads');
 
 		$result = $database->loadRowList();
 
-		$query 	= "CREATE TABLE IF NOT EXISTS #__jjdownloads_history (
-			`id` int(10) unsigned NOT NULL auto_increment,
-			`date` DATE NOT NULL,
-			`downloads` varchar(1000) NOT NULL,
-			PRIMARY KEY  (`id`)
-		);";
-		$database->setQuery($query);
-		$database->execute();
-
-		$downloads = 0;
+		$downloads = '';
 
 		foreach ($result as $extension)
 		{
@@ -83,27 +83,27 @@ class Jjdownloadupdate extends JApplicationCli
 
 		// Create a new query object.
 		$query = $database->getQuery(true);
-		 
+
 		// Insert columns.
 		$columns = array('date', 'downloads');
-		 
+
 		// Insert values.
 		$values = array(date('Y-m-d'), $database->quote($downloads));
-		 
+
 		// Prepare the insert query.
 		$query
 		    ->insert($database->quoteName('#__jjdownloads_history'))
 		    ->columns($database->quoteName($columns))
 		    ->values(implode(',', $values));
-		 
+
 		// Set the query using our newly populated query object and execute it.
 		$database->setQuery($query);
 
-		$this->out('Uploading data into the jjdownloads history table');
+		JLog::add('Uploading data into the jjdownloads history table', JLog::INFO, 'jjdownloads');
 
 		$database->execute();
 
-		$this->out('Finished uploading latest values');
+		JLog::add('Finished uploading latest values', JLog::INFO, 'jjdownloads');
 	}
 }
 
