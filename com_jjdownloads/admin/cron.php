@@ -55,6 +55,24 @@ $lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
 class Jjdownloadupdate extends JApplicationCli
 {
 	/**
+	 * Write a string to standard output.
+	 *
+	 * @param   string   $text  The text to display.
+	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
+	 *
+	 * @return  JApplicationCli  Instance of $this to allow chaining.
+	 *
+	 * @codeCoverageIgnore
+	 * @since   11.1
+	 */
+	public function out($text = '', $nl = true)
+	{
+		JLog::add($text, JLog::INFO, 'jjdownloads');
+
+		return $this;
+	}
+
+	/**
 	 * Entry point for the script
 	 *
 	 * @return  void
@@ -70,7 +88,7 @@ class Jjdownloadupdate extends JApplicationCli
 			JLog::ALL,
 			'jjdownloads'
 		);
-		JLog::add('Starting Update', JLog::INFO, 'jjdownloads');
+		$this->out('Starting Update');
 
 		// Get the latest Download counts from the database
 		$database = JFactory::getDbo();
@@ -78,7 +96,7 @@ class Jjdownloadupdate extends JApplicationCli
 		$query->select('*')
 			->from($database->quoteName('#__jjdownloads'));
 		$database->setQuery($query);
-		JLog::add('Retrieving data from the jjdownloads table', JLog::INFO, 'jjdownloads');
+		$this->out('Retrieving data from the jjdownloads table');
 
 		try
 		{
@@ -112,7 +130,7 @@ class Jjdownloadupdate extends JApplicationCli
 		// Set the query using our newly populated query object and execute it.
 		$database->setQuery($query);
 
-		JLog::add('Uploading data into the jjdownloads history table', JLog::INFO, 'jjdownloads');
+		$this->out('Uploading data into the jjdownloads history table');
 
 		try
 		{
@@ -125,8 +143,11 @@ class Jjdownloadupdate extends JApplicationCli
 			return;
 		}
 
-		JLog::add('Finished uploading latest values', JLog::INFO, 'jjdownloads');
+		$this->out('Finished uploading latest values');
 	}
 }
 
-JApplicationCli::getInstance('Jjdownloadupdate')->execute();
+
+$instance = JApplicationCli::getInstance('Jjdownloadupdate');
+
+$instance->execute();
