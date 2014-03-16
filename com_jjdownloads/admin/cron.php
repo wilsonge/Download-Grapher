@@ -82,7 +82,7 @@ class Jjdownloadupdate extends JApplicationCli
 		}
 
 		// Create a new query object.
-		$query = $db->getQuery(true);
+		$query = $database->getQuery(true);
 		 
 		// Insert columns.
 		$columns = array('date', 'downloads');
@@ -97,11 +97,11 @@ class Jjdownloadupdate extends JApplicationCli
 		    ->values(implode(',', $values));
 		 
 		// Set the query using our newly populated query object and execute it.
-		$db->setQuery($query);
+		$database->setQuery($query);
 
 		$this->out('Uploading data into the jjdownloads history table');
 
-		$db->execute();
+		$database->execute();
 
 		$this->out('Finished uploading latest values');
 	}
