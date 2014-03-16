@@ -46,8 +46,8 @@ $lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
 || $lang->load('files_joomla.sys', JPATH_SITE, null, true);
 
 /**
- * This script will fetch the update information for all extensions and store
- * them in the database, speeding up your administrator.
+ * This script will fetch the download count for all extensions from the #__jjdownloads
+ * database and store them in the #__jjdownloads_history table.
  *
  * @package  JoomJunk_Downloads
  * @since    2.0
