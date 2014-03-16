@@ -1,44 +1,110 @@
-<html>
-<head>
-</head>
-<body>
 <?php
-	// Init Joomla Framework
-	define('_JEXEC', 1);
-	define('DS', DIRECTORY_SEPARATOR);
-	define('JPATH_BASE', realpath(dirname(__FILE__) . DS . '..' . DS . '..' . DS . '..'));
+/**
+ * @package    JoomJunk_Downloads
+ *
+ * @copyright  (C) 2012 JoomJunk. All rights reserved.
+ * @license    http://www.gnu.org/licenses/gpl-3.0.html
+ */
 
-	require_once JPATH_BASE . DS . 'includes' . DS . 'defines.php';
-	require_once JPATH_BASE . DS . 'includes' . DS . 'framework.php';
+/**
+ * This is a CRON script which should be called from the command-line, not the
+ * web. For example something like:
+ * /usr/bin/php /path/to/site/cli/update_cron.php
+ */
 
-	$mainframe = JFactory::getApplication('site');
+// Set flag that this is a parent file.
+const _JEXEC = 1;
 
-	// DBQuery
-	$database = JFactory::getDBO();
-	$query = "SELECT * FROM #__jjdownloads;";
-	$database->setQuery($query);
-	$result = $database->loadRowList();
+error_reporting(E_ALL | E_NOTICE);
+ini_set('display_errors', 1);
 
-	$query 	= "CREATE TABLE IF NOT EXISTS #__jjdownloads_history (
-		`id` int(10) unsigned NOT NULL auto_increment,
-		`date` DATE NOT NULL,
-		`downloads` varchar(1000) NOT NULL,
-		PRIMARY KEY  (`id`)
-	) ; ";
-	$database->setQuery($query);
-	$database->query();
+if (!defined('_JDEFINES'))
+{
+	define('JPATH_BASE', dirname(__DIR__));
+}
 
-	$downloads = 0;
+// Load system defines
+if (file_exists(dirname(__DIR__) . '/../includes/defines.php'))
+{
+	require_once dirname(__DIR__) . '/../includes/defines.php';
+}
 
-	foreach ($result as $extension)
+require_once JPATH_LIBRARIES . '/import.legacy.php';
+require_once JPATH_LIBRARIES . '/cms.php';
+
+// Load the configuration
+require_once JPATH_CONFIGURATION . '/configuration.php';
+
+/**
+ * This script will fetch the update information for all extensions and store
+ * them in the database, speeding up your administrator.
+ *
+ * @package  Joomla.Cli
+ * @since    2.0
+ */
+class Jjdownloadupdate extends JApplicationCli
+{
+	/**
+	 * Entry point for the script
+	 *
+	 * @return  void
+	 *
+	 * @since   2.0
+	 */
+	public function doExecute()
 	{
-		$downloads .= $extension[0] . ':' . $extension[2] . ',';
-	}
+		$this->out('Starting Update');
+		// Get the latest Download counts from the database
+		$database = JFactory::getDbo();
+		$query = $database->getQuery(true);
+		$query->select('*')
+			->from($database->quoteName('#__jjdownloads'));
+		$database->setQuery($query);
 
-	$query = "INSERT INTO `#__jjdownloads_history` (`date`, `downloads`) VALUES
-		('" . date('Y-m-d') . "', '" . $downloads . "');";
-	$database->setQuery($query);
-	$database->query();
-?>
-</body>
-</html>
+		$this->out('Retrieving data from the jjdownloads table');
+
+		$result = $database->loadRowList();
+
+		$query 	= "CREATE TABLE IF NOT EXISTS #__jjdownloads_history (
+			`id` int(10) unsigned NOT NULL auto_increment,
+			`date` DATE NOT NULL,
+			`downloads` varchar(1000) NOT NULL,
+			PRIMARY KEY  (`id`)
+		);";
+		$database->setQuery($query);
+		$database->execute();
+
+		$downloads = 0;
+
+		foreach ($result as $extension)
+		{
+			$downloads .= $extension[0] . ':' . $extension[2] . ',';
+		}
+
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		 
+		// Insert columns.
+		$columns = array('date', 'downloads');
+		 
+		// Insert values.
+		$values = array(date('Y-m-d'), $db->quote($downloads));
+		 
+		// Prepare the insert query.
+		$query
+		    ->insert($db->quoteName('#__jjdownloads_history'))
+		    ->columns($db->quoteName($columns))
+		    ->values(implode(',', $values));
+		 
+		// Set the query using our newly populated query object and execute it.
+		$db->setQuery($query);
+
+		$this->out('Uploading data into the jjdownloads history table');
+
+		$db->execute();
+
+		$this->out('Finished uploading latest values');
+	}
+}
+
+JApplicationCli::getInstance('Jjdownloadupdate')->execute();
