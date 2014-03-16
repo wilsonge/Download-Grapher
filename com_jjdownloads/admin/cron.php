@@ -55,24 +55,6 @@ $lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
 class Jjdownloadupdate extends JApplicationCli
 {
 	/**
-	 * Write a string to standard output.
-	 *
-	 * @param   string   $text  The text to display.
-	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
-	 *
-	 * @return  JApplicationCli  Instance of $this to allow chaining.
-	 *
-	 * @codeCoverageIgnore
-	 * @since   11.1
-	 */
-	public function out($text = '', $nl = true)
-	{
-		JLog::add($text, JLog::INFO, 'jjdownloads');
-
-		return $this;
-	}
-
-	/**
 	 * Entry point for the script
 	 *
 	 * @return  void
