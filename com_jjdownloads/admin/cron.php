@@ -88,7 +88,7 @@ class Jjdownloadupdate extends JApplicationCli
 		$columns = array('date', 'downloads');
 		 
 		// Insert values.
-		$values = array(date('Y-m-d'), $db->quote($downloads));
+		$values = array(date('Y-m-d'), $database->quote($downloads));
 		 
 		// Prepare the insert query.
 		$query
