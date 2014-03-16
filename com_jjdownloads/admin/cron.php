@@ -12,29 +12,38 @@
  * /usr/bin/php /path/to/site/cli/update_cron.php
  */
 
-// Set flag that this is a parent file.
 // We are a valid entry point.
-define('_JEXEC', 1);
+const _JEXEC = 1;
 
-error_reporting(E_ALL | E_NOTICE);
-ini_set('display_errors', 1);
+// Load system defines
+if (file_exists(dirname(__DIR__) . '/defines.php'))
+{
+	require_once dirname(__DIR__) . '/defines.php';
+}
 
 if (!defined('_JDEFINES'))
 {
-	define('JPATH_BASE', dirname(__DIR__) . '/..');
+	define('JPATH_BASE', dirname(__DIR__));
+	require_once JPATH_BASE . '/includes/defines.php';
 }
 
-// Load system defines
-if (file_exists(dirname(__DIR__) . '/../includes/defines.php'))
-{
-	require_once dirname(__DIR__) . '/../includes/defines.php';
-}
-
+// Get the framework.
 require_once JPATH_LIBRARIES . '/import.legacy.php';
+
+// Bootstrap the CMS libraries.
 require_once JPATH_LIBRARIES . '/cms.php';
 
-// Load the configuration
-require_once JPATH_CONFIGURATION . '/configuration.php';
+// Configure error reporting to maximum for CLI output.
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Load Library language
+$lang = JFactory::getLanguage();
+
+// Try the files_joomla file in the current language (without allowing the loading of the file in the default language)
+$lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
+// Fallback to the files_joomla file in the default language
+|| $lang->load('files_joomla.sys', JPATH_SITE, null, true);
 
 /**
  * This script will fetch the update information for all extensions and store
