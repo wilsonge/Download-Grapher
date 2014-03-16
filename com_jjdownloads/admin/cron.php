@@ -92,8 +92,8 @@ class Jjdownloadupdate extends JApplicationCli
 		 
 		// Prepare the insert query.
 		$query
-		    ->insert($db->quoteName('#__jjdownloads_history'))
-		    ->columns($db->quoteName($columns))
+		    ->insert($database->quoteName('#__jjdownloads_history'))
+		    ->columns($database->quoteName($columns))
 		    ->values(implode(',', $values));
 		 
 		// Set the query using our newly populated query object and execute it.
