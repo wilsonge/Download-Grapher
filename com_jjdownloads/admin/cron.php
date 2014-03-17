@@ -37,9 +37,6 @@ require_once JPATH_LIBRARIES . '/cms.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Load the configuration
-require_once JPATH_CONFIGURATION . '/configuration.php';
-
 /**
  * This script will fetch the download count for all extensions from the #__jjdownloads
  * database and store them in the #__jjdownloads_history table.
