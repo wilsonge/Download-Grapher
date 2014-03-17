@@ -63,13 +63,6 @@ class Jjdownloadupdate extends JApplicationCli
 	 */
 	public function doExecute()
 	{
-		JLog::addLogger(
-			array(
-				'text_file' => 'cli_jjdownloads.php'
-			),
-			JLog::ALL,
-			'jjdownloads'
-		);
 		$this->out('Starting Update');
 
 		// Get the latest Download counts from the database
@@ -86,7 +79,7 @@ class Jjdownloadupdate extends JApplicationCli
 		}
 		catch (Exception $e)
 		{
-			JLog::add('Error getting latest downloads from the database. Error' . $e->getMessage(), JLog::ERROR, 'jjdownloads');
+			$this->out('Error getting latest downloads from the database. Error ' . $e->getMessage());
 
 			return;
 		}
@@ -100,7 +93,7 @@ class Jjdownloadupdate extends JApplicationCli
 
 		// Insert values and their respective columns.
 		$columns = array('date', 'downloads');
-		$values = array(date('Y-m-d'), $database->quote($downloads));
+		$values = array($database->quote(date('Y-m-d')), $database->quote($downloads));
 
 		// Prepare the insert query.
 		$query = $database->getQuery(true);
@@ -120,7 +113,7 @@ class Jjdownloadupdate extends JApplicationCli
 		}
 		catch (Exception $e)
 		{
-			JLog::add('Error storing data into the database. Error' . $e->getMessage(), JLog::ERROR, 'jjdownloads');
+			$this->out('Error storing data into the database. Error ' . $e->getMessage());
 
 			return;
 		}
@@ -129,7 +122,4 @@ class Jjdownloadupdate extends JApplicationCli
 	}
 }
 
-
-$instance = JApplicationCli::getInstance('Jjdownloadupdate');
-
-$instance->execute();
+JApplicationCli::getInstance('Jjdownloadupdate')->execute();
