@@ -61,38 +61,13 @@ class Jjdownloadupdate extends JApplicationCli
 	 * @var    string  The database table to fetch the download count from.
 	 * @since  2.0
 	 */
-	protected $downloadTable;
+	protected $downloadTable = '#__jjdownloads';
 
 	/**
 	 * @var    string  The database table to upload the history count to.
 	 * @since  2.0
 	 */
-	protected $historyTable;
-
-	/**
-	 * Class constructor.
-	 *
-	 * @param   mixed  $input       An optional argument to provide dependency injection for the application's
-	 *                              input object.  If the argument is a JInputCli object that object will become
-	 *                              the application's input object, otherwise a default input object is created.
-	 * @param   mixed  $config      An optional argument to provide dependency injection for the application's
-	 *                              config object.  If the argument is a JRegistry object that object will become
-	 *                              the application's config object, otherwise a default config object is created.
-	 * @param   mixed  $dispatcher  An optional argument to provide dependency injection for the application's
-	 *                              event dispatcher.  If the argument is a JEventDispatcher object that object will become
-	 *                              the application's event dispatcher, if it is null then the default event dispatcher
-	 *                              will be created based on the application's loadDispatcher() method.
-	 *
-	 * @see     JApplicationBase::loadDispatcher()
-	 * @since   11.1
-	 */
-	public function __construct(JInputCli $input = null, JRegistry $config = null, JEventDispatcher $dispatcher = null)
-	{
-		parent::__construct($input, $config, $dispatcher);
-		
-		$this->downloadTable = '#__jjdownloads';
-		$this->historyTable = '#__jjdownloads_history';
-	}
+	protected $historyTable = '#__jjdownloads_history';
 
 	/**
 	 * Entry point for the script
@@ -136,8 +111,7 @@ class Jjdownloadupdate extends JApplicationCli
 		$values = array($database->quote(date('Y-m-d')), $database->quote($downloads));
 
 		// Prepare the insert query.
-		$query = $database->getQuery(true);
-		$query
+		$query->clear()
 			->insert($database->quoteName($this->historyTable))
 			->columns($database->quoteName($columns))
 			->values(implode(',', $values));
