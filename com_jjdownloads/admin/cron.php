@@ -37,6 +37,9 @@ require_once JPATH_LIBRARIES . '/cms.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Load the configuration
+require_once JPATH_CONFIGURATION . '/configuration.php';
+
 // Load Library language
 $lang = JFactory::getLanguage();
 
@@ -55,6 +58,26 @@ $lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
 class Jjdownloadupdate extends JApplicationCli
 {
 	/**
+	 * @var    string  The database table to fetch the download count from.
+	 * @since  2.0
+	 */
+	protected $downloadTable;
+
+	/**
+	 * @var    string  The database table to upload the history count to.
+	 * @since  2.0
+	 */
+	protected $historyTable;
+
+	public function __construct(JInputCli $input = null, JRegistry $config = null, JEventDispatcher $dispatcher = null)
+	{
+		parent::__construct($input, $config, $dispatcher);
+		
+		$this->downloadTable = '#__jjdownloads';
+		$this->historyTable = '#__jjdownloads_history';
+	}
+
+	/**
 	 * Entry point for the script
 	 *
 	 * @return  void
@@ -69,9 +92,9 @@ class Jjdownloadupdate extends JApplicationCli
 		$database = JFactory::getDbo();
 		$query = $database->getQuery(true);
 		$query->select('*')
-			->from($database->quoteName('#__jjdownloads'));
+			->from($database->quoteName($this->downloadTable));
 		$database->setQuery($query);
-		$this->out('Retrieving data from the jjdownloads table');
+		$this->out('Retrieving data from the ' . $this->downloadTable . ' table');
 
 		try
 		{
@@ -84,7 +107,7 @@ class Jjdownloadupdate extends JApplicationCli
 			return;
 		}
 
-		$downloads = '';
+		$downloads = 0;
 
 		foreach ($result as $extension)
 		{
@@ -98,14 +121,14 @@ class Jjdownloadupdate extends JApplicationCli
 		// Prepare the insert query.
 		$query = $database->getQuery(true);
 		$query
-			->insert($database->quoteName('#__jjdownloads_history'))
+			->insert($database->quoteName($this->historyTable))
 			->columns($database->quoteName($columns))
 			->values(implode(',', $values));
 
 		// Set the query using our newly populated query object and execute it.
 		$database->setQuery($query);
 
-		$this->out('Uploading data into the jjdownloads history table');
+		$this->out('Uploading data into the ' . $this->historyTable . ' table');
 
 		try
 		{
