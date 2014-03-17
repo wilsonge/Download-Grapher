@@ -40,14 +40,6 @@ ini_set('display_errors', 1);
 // Load the configuration
 require_once JPATH_CONFIGURATION . '/configuration.php';
 
-// Load Library language
-$lang = JFactory::getLanguage();
-
-// Try the files_joomla file in the current language (without allowing the loading of the file in the default language)
-$lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
-// Fallback to the files_joomla file in the default language
-|| $lang->load('files_joomla.sys', JPATH_SITE, null, true);
-
 /**
  * This script will fetch the download count for all extensions from the #__jjdownloads
  * database and store them in the #__jjdownloads_history table.
