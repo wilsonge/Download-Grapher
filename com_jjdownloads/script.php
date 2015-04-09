@@ -35,7 +35,7 @@ class com_jjdownloadsInstallerScript
 		// Installing component manifest file version
 		$this->release = $parent->get("manifest")->version;
 
-		$lang =&  JFactory::getLanguage();
+		$lang = JFactory::getLanguage();
 		$lang->load('com_jjdownloads', JPATH_ADMINISTRATOR);
 		echo '<table width="100%">
 			<tr>
@@ -60,7 +60,7 @@ class com_jjdownloadsInstallerScript
 		// Installing component manifest file version
 		$this->release = $parent->get("manifest")->version;
 
-		$lang =&  JFactory::getLanguage();
+		$lang = JFactory::getLanguage();
 		$lang->load('com_jjdownloads', JPATH_ADMINISTRATOR);
 		echo '<table width="100%">
 			<tr>
