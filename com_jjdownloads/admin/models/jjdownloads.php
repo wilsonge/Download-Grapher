@@ -51,8 +51,8 @@ class jjdownloadsModeljjdownloads extends JModelLegacy
 		$query->select('*')
 			->from($query->quoteName('#__jjdownloads'))
 			->where($query->quoteName('id') . ' = ' . (int) $number);
-		$this->db->setQuery($query);
-		$row = $this->db->loadRow();
+		$this->getDbo()->setQuery($query);
+		$row = $this->getDbo()->loadRow();
 
 		return $row[3];
 	}
